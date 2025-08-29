@@ -1,5 +1,3 @@
-models.go
-
 package main
 
 type User struct {

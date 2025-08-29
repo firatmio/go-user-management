@@ -1,5 +1,3 @@
-go.mod
-
 module user-management
 
 go 1.24.1
