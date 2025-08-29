@@ -1,71 +1,111 @@
-# User Authentication System
+# User Management System in Go
 
-A fully functional user registration and login system built with Go (Golang) backend, SQLite database, and a simple HTML/CSS/JavaScript frontend.
+![Go Version](https://img.shields.io/badge/Go-1.24.1-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
----
+## Overview
+
+This project is a simple yet complete user authentication system. It features a backend API built with Go (Golang) that handles user registration and login, and a basic frontend built with HTML, CSS, and JavaScript. User data is stored in a SQLite database.
 
 ## Features
 
-* Secure user registration (username & password)
-* User login authentication
-* Passwords are securely hashed using bcrypt
-* Lightweight web interface
-* Persistent storage using SQLite
+-   **Secure User Registration:** Create new user accounts with a username and password.
+-   **User Authentication:** Verify user credentials upon login.
+-   **Password Hashing:** Passwords are securely hashed using the `bcrypt` algorithm.
+-   **RESTful API:** A clean and simple API for user management.
+-   **Simple Frontend:** A minimal web interface for registration and login.
+-   **Database Persistence:** User data is stored in a local SQLite database file (`users.db`).
 
----
+## Technologies Used
 
-## Setup Instructions
+-   **Backend:** Go (Golang)
+-   **Database:** SQLite
+-   **Frontend:** HTML, CSS, JavaScript
 
-1. Clone the repository:
+## Getting Started
 
-```bash
-git clone https://github.com/yourusername/user-auth-system.git
-cd user-auth-system/backend
-```
+### Prerequisites
 
-2. Install required Go package:
+-   Go version 1.24.1 or higher. You can download it from [golang.org](https://golang.org/dl/).
 
-```bash
-go get golang.org/x/crypto/bcrypt
-```
+### Installation & Running
 
-3. Start the server:
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd user-management-go
+    ```
 
-```bash
-go run main.go
-```
+2.  **Navigate to the backend directory:**
+    ```bash
+    cd backend
+    ```
 
-4. Open your browser at:
+3.  **Run the server:**
+    The Go module system will automatically handle the dependencies.
+    ```bash
+    go run .
+    ```
+    The server will start on `http://localhost:8080`.
 
-```
-http://localhost:8080
-```
+4.  **Access the application:**
+    Open your web browser and navigate to `http://localhost:8080`.
 
----
+## API Endpoints
 
-## Usage
+The backend server provides the following API endpoints:
 
-* **Register**: Fill out the registration form and click the `Register` button.
-* **Login**: Fill out the login form and click the `Login` button.
+| Method | Endpoint   | Description              |
+| :----- | :--------- | :----------------------- |
+| `POST` | `/register`| Registers a new user.    |
+| `POST` | `/login`   | Authenticates a user.    |
 
----
+### Request/Response Examples
+
+#### `/register`
+
+-   **Request Body:**
+    ```json
+    {
+        "username": "testuser",
+        "password": "password123"
+    }
+    ```
+-   **Success Response (201 Created):** `User registered successfully`
+-   **Error Response (409 Conflict):** `User already exists`
+
+#### `/login`
+
+-   **Request Body:**
+    ```json
+    {
+        "username": "testuser",
+        "password": "password123"
+    }
+    ```
+-   **Success Response (200 OK):** `Login successful`
+-   **Error Response (404 Not Found):** `User not found`
+-   **Error Response (401 Unauthorized):** `Invalid password`
 
 ## Project Structure
 
 ```
-backend/      # Go backend files (API, database, models)
-frontend/     # HTML, CSS, and JavaScript frontend files
-README.md     # Project documentation
+.
+├── backend/         # Go backend source code
+│   ├── main.go      # Main application entry point, server setup
+│   ├── handlers.go  # HTTP request handlers for API endpoints
+│   ├── db.go        # Database initialization and connection
+│   ├── models.go    # Struct definitions for data models
+│   ├── go.mod       # Go module definitions
+│   └── go.sum       # Go module checksums
+├── frontend/        # Frontend files
+│   ├── index.html   # Main HTML page
+│   ├── style.css    # CSS for styling
+│   └── script.js    # JavaScript for frontend logic
+├── LICENSE          # Project License file
+└── README.md        # This file
 ```
-
----
-
-## Screenshots
-
-*Add screenshots of the registration and login interface here to showcase the UI.*
-
----
 
 ## License
 
-[MIT License](./LICENSE)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
